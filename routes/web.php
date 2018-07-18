@@ -3,14 +3,14 @@
 use Pvtl\VoyagerFrontend\Page;
 use Illuminate\Support\Facades\Request;
 
-$accountController = '\Pvtl\VoyagerFrontend\Http\Controllers\AccountController';
-$searchController = '\Pvtl\VoyagerFrontend\Http\Controllers\SearchController';
+$accountController = config('voyager-frontend.controllers.account', '\Pvtl\VoyagerFrontend\Http\Controllers\AccountController');
+$searchController = config('voyager-frontend.controllers.search',  '\Pvtl\VoyagerFrontend\Http\Controllers\SearchController');
 
 /**
  * Authentication
  */
 Route::group(['middleware' => ['web']], function () use ($accountController) {
-    Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::group(['namespace' => config('voyager-frontend.controllers.auth_namespace', 'App\Http\Controllers')], function () {
         Auth::routes();
     });
 
@@ -35,7 +35,7 @@ Route::group([
     'as' => 'voyager-frontend.pages.',
     'prefix' => 'admin/pages/',
     'middleware' => ['web', 'admin.user'],
-    'namespace' => '\Pvtl\VoyagerFrontend\Http\Controllers'
+    'namespace' => config('voyager-frontend.controllers.namespace', '\Pvtl\VoyagerFrontend\Http\Controllers')
 ], function () {
     Route::post('layout/{id?}', ['uses' => "PageController@changeLayout", 'as' => 'layout']);
 });
