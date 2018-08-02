@@ -89,7 +89,7 @@ trait Breadcrumbs
     {
         $menuItems = [];
 
-        $storedMenuItems = Cache::remember('', 10, function () {
+        $storedMenuItems = Cache::remember('menu/items', 10, function () {
             return MenuItem::all();
         });
 
