@@ -104,7 +104,6 @@ class InstallCommand extends Command
 
 
         // Database
-        $this->call('voyager-blog:install');
         $this->call('voyager-pages:install');
 
         $this->info('Migrating the database tables into your application');

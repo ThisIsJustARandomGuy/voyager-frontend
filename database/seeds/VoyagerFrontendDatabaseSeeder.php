@@ -17,7 +17,6 @@ class VoyagerFrontendDatabaseSeeder extends Seeder
     public function run()
     {
         $this->seed('VoyagerFrontendPagesDataTypesTableSeeder');
-        $this->seed('VoyagerFrontendBlogDataTypesTableSeeder');
         $this->seed('VoyagerFrontendMenuDataRowsTableSeeder');
     }
 }

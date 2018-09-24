@@ -132,7 +132,7 @@ The function will output an absolute URL, where the hostname will be `APP_URL` -
 This module contains a scheduled job to regenerate indices which will run automatically once you setup jobs for Laravel. If you need to test and re-generate search indices you can manually run the command `php artisan voyager-frontend:generate-search-indices`.
 
 #### Configuring Search (Using Laravel Scout)
-By default this module includes "searching" the "Pages" and "Posts" Models out-of-the-box once you have defined the following variable in your `.env` file - [check out the Laravel Scout documentation](https://laravel.com/docs/5.5/scout):
+By default this module includes "searching" the "Pages" Model out-of-the-box once you have defined the following variable in your `.env` file - [check out the Laravel Scout documentation](https://laravel.com/docs/5.5/scout):
 
 ```
 SCOUT_DRIVER=tntsearch

@@ -74,7 +74,7 @@ class VoyagerFrontendServiceProvider extends ServiceProvider
         // Pull default web routes
         $this->loadRoutesFrom(base_path('/routes/web.php'));
 
-        // Then add our Pages and Posts Routes
+        // Then add our Page Routes
         $this->loadRoutesFrom(self::PACKAGE_DIR . 'routes/web.php');
     }
 
