@@ -61,9 +61,11 @@ class VoyagerFrontendServiceProvider extends ServiceProvider
     protected function strapEvents()
     {
         // When an Eloquent Model is updated, re-generate our indices (could get intense)
-        Event::listen(['eloquent.saved: *', 'eloquent.deleted: *'], function () {
-            Artisan::call("voyager-frontend:generate-search-indices");
-        });
+        if(config('voyager-frontend.enable_search', true)) {
+            Event::listen([ 'eloquent.saved: *', 'eloquent.deleted: *' ], function() {
+                Artisan::call("voyager-frontend:generate-search-indices");
+            });
+        }
     }
 
     /**
@@ -152,8 +154,12 @@ class VoyagerFrontendServiceProvider extends ServiceProvider
             $schedule = $this->app->make(Schedule::class);
 
             $schedule->command('voyager-frontend:clean-thumbnails')->dailyAt('13:00');
-            $schedule->command('voyager-frontend:generate-sitemap')->dailyAt('13:15');
-            $schedule->command('voyager-frontend:generate-search-indices')->dailyAt('13:30');
+            if(config('voyager-frontend.schedule_sitemap', true)) {
+                $schedule->command('voyager-frontend:generate-sitemap')->dailyAt('13:15');
+            }
+            if(config('voyager-frontend.enable_search', true)) {
+                $schedule->command('voyager-frontend:generate-search-indices')->dailyAt('13:30');
+            }
         });
     }
 }
