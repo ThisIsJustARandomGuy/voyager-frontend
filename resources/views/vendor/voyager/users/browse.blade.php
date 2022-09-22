@@ -95,7 +95,7 @@
                                             </td>
                                         @endcan
                                         @foreach($dataType->browseRows as $row)
-                                            
+
                                             <td>
                                                 @if($row->type == 'image')
                                                     <img src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
@@ -135,7 +135,11 @@
                                                 @elseif($row->type == 'select_dropdown' && $data->{$row->field . '_page_slug'})
                                                     <a href="{{ $data->{$row->field . '_page_slug'} }}">{{ $data->{$row->field} }}</a>
                                                 @elseif($row->type == 'date' || $row->type == 'timestamp')
-                                                    {{ property_exists($row->details, 'format') ? \Carbon\Carbon::parse($data->{$row->field})->formatLocalized($row->details->format) : $data->{$row->field} }}
+                                                    @if ( property_exists($row->details, 'format') && !is_null($data->{$row->field}) )
+                                                        {{ \Carbon\Carbon::parse($data->{$row->field})->formatLocalized($row->details->format) }}
+                                                    @else
+                                                        {{ $data->{$row->field} }}
+                                                    @endif
                                                 @elseif($row->type == 'checkbox')
                                                     @if(property_exists($row->details, 'on') && property_exists($row->details, 'off'))
                                                         @if($data->{$row->field})
