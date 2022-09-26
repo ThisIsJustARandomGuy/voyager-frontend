@@ -14,18 +14,18 @@ if(config('voyager-frontend.enable_auth', true)) {
         Route::group(['namespace' => config('voyager-frontend.controllers.auth_namespace', 'App\Http\Controllers')], function () {
             Auth::routes();
         });
-    
+
         Route::group(['middleware' => 'auth', 'as' => 'voyager-frontend.account'], function () use ($accountController) {
             Route::get('/account', "$accountController@index");
             Route::post('/account', "$accountController@updateAccount");
-    
+
             /**
              * User impersonation
              */
             Route::get('/admin/users/impersonate/{userId}', "$accountController@impersonateUser")
                 ->name('.impersonate')
                 ->middleware(['web', 'admin.user']);
-    
+
             Route::post('/admin/users/impersonate/{originalId}', "$accountController@impersonateUser")
                 ->name('.impersonate')
                 ->middleware(['web']);
@@ -39,7 +39,7 @@ Route::group([
     'middleware' => ['web', 'admin.user'],
     'namespace' => config('voyager-frontend.controllers.namespace', '\Pvtl\VoyagerFrontend\Http\Controllers')
 ], function () {
-    Route::post('layout/{id?}', ['uses' => "PageController@changeLayout", 'as' => 'layout']);
+    Route::post('layout/{id?}', ['uses' => 'PageController@changeLayout', 'as' => 'layout']);
 });
 
 /**
