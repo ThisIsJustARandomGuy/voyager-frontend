@@ -1,5 +1,7 @@
 <?php
 
+namespace Pvtl\VoyagerFrontend\Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\Menu;
 use TCG\Voyager\Models\MenuItem;

@@ -1,5 +1,7 @@
 <?php
 
+namespace Pvtl\VoyagerFrontend\Database\Seeders;
+
 use TCG\Voyager\Traits\Seedable;
 use Illuminate\Database\Seeder;
 

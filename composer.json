@@ -17,10 +17,10 @@
     "minimum-stability": "stable",
     "require": {
         "pvtl/voyager-pages": "dev-master",
-        "tcg/voyager": "^1.1",
-        "spatie/laravel-sitemap": "~5.5.0",
-        "laravel/scout": "^7.0",
-        "teamtnt/laravel-scout-tntsearch-driver": "^7.0"
+        "tcg/voyager": "dev-master",
+        "spatie/laravel-sitemap": "^5.8",
+        "laravel/scout": "^8.0",
+        "teamtnt/laravel-scout-tntsearch-driver": "^10.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
@@ -29,7 +29,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Pvtl\\VoyagerFrontend\\": "src/"
+            "Pvtl\\VoyagerFrontend\\": "src/",
+            "Pvtl\\VoyagerFrontend\\Database\\Factories\\": "database/factories/",
+            "Pvtl\\VoyagerFrontend\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
