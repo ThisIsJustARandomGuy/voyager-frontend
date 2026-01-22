@@ -18,9 +18,9 @@
     "require": {
         "pvtl/voyager-pages": "dev-master",
         "tcg/voyager": "dev-master",
-        "spatie/laravel-sitemap": "^5.8",
-        "laravel/scout": "^8.0",
-        "teamtnt/laravel-scout-tntsearch-driver": "^10.0"
+        "spatie/laravel-sitemap": "^6.1",
+        "laravel/scout": "^9.0",
+        "teamtnt/laravel-scout-tntsearch-driver": "^12.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
