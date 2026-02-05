@@ -2,17 +2,6 @@
  * Site Header (inc. Foundation's Top-Bar)
  */
 
-.header-site-search {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background: $light-gray;
-    display: none; // hide by default
-
-    .input-group {
-        margin-bottom: 0;
-    }
-}
-
 .top-bar {
     border-bottom: 1px solid $light-gray;
 

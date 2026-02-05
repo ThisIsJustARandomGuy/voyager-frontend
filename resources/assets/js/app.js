@@ -21,14 +21,6 @@ $(document).foundation();
 sr.reveal("[data-scrollreveal]", { duration: 1000 });
 
 /**
- * Toggle Header Search bar
- */
-$(document).on("click", "[data-toggle-search-trigger]", function(e) {
-    e.preventDefault();
-    $("[data-toggle-search]").slideToggle();
-});
-
-/**
  * Prefetch and Transition the next page
  */
 (function($) {

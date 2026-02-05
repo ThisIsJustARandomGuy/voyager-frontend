@@ -21,15 +21,6 @@
 </div>
 
 <div class="off-canvas-content" data-off-canvas-content>
-    <div class="header-site-search" data-toggle-search>
-        <div class="grid-container">
-            <div class="grid-x">
-                <div class="cell medium-8 medium-offset-2">
-                    @include('voyager-frontend::partials.search-box')
-                </div> <!-- /.cell -->
-            </div> <!-- /.grid -->
-        </div> <!-- /.container -->
-    </div> <!-- /.header-site-search -->
 
     <div class="top-bar">
         <div class="top-bar-left">

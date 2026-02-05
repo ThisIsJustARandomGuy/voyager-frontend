@@ -6,13 +6,9 @@ use Illuminate\Http\Request;
 use Pvtl\VoyagerFrontend\Commands;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Scout\Console\ImportCommand;
 use Illuminate\Console\Scheduling\Schedule;
-use Pvtl\VoyagerFrontend\Exceptions\Handler;
-use Illuminate\Contracts\Debug\ExceptionHandler;
+use Pvtl\VoyagerFrontend\Facades\VoyagerFrontend;
 use Pvtl\VoyagerFrontend\Http\Controllers\PageController;
 
 class VoyagerFrontendServiceProvider extends ServiceProvider
@@ -49,9 +45,6 @@ class VoyagerFrontendServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(self::PACKAGE_DIR . 'config/voyager-frontend.php', 'voyager-frontend');
 
-        // Merge our Scout config over
-        $this->mergeConfigFrom(self::PACKAGE_DIR . 'config/scout.php', 'scout');
-
         $this->app->alias(VoyagerFrontend::class, 'voyager-frontend');
     }
 
@@ -60,12 +53,7 @@ class VoyagerFrontendServiceProvider extends ServiceProvider
      */
     protected function strapEvents()
     {
-        // When an Eloquent Model is updated, re-generate our indices (could get intense)
-        if(config('voyager-frontend.enable_search', true)) {
-            Event::listen([ 'eloquent.saved: *', 'eloquent.deleted: *' ], function() {
-                Artisan::call("voyager-frontend:generate-search-indices");
-            });
-        }
+        // fill as needed
     }
 
     /**
@@ -144,9 +132,7 @@ class VoyagerFrontendServiceProvider extends ServiceProvider
 
         // Register our commands
         $this->commands([
-            ImportCommand::class,
             Commands\GenerateSitemap::class,
-            Commands\GenerateSearchIndices::class
         ]);
 
         // Schedule our commands
@@ -156,9 +142,6 @@ class VoyagerFrontendServiceProvider extends ServiceProvider
             $schedule->command('voyager-frontend:clean-thumbnails')->dailyAt('13:00');
             if(config('voyager-frontend.schedule_sitemap', true)) {
                 $schedule->command('voyager-frontend:generate-sitemap')->dailyAt('13:15');
-            }
-            if(config('voyager-frontend.enable_search', true)) {
-                $schedule->command('voyager-frontend:generate-search-indices')->dailyAt('13:30');
             }
         });
     }
